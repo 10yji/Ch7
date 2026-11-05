@@ -110,7 +110,7 @@ public static double simulate(int[] years, int[] months, double[] prices) {
 }
 
 public static String decide(double[] history, boolean holding, double boughtAt) {
-    return buyAndHold(history, holding, boughtAt);   // change this line to switch strategies
+    return dipBuyer(history, holding, boughtAt);   // change this line to switch strategies
 }
 
 public static String buyAndHold(double[] history, boolean holding, double boughtAt) {
@@ -120,5 +120,13 @@ public static String buyAndHold(double[] history, boolean holding, double bought
 
 public static String dipBuyer(double[] history, boolean holding, double boughtAt) {
 	
+	for (int i = 2; i<history.length; i++){
+		if (history[i]<history[i-1] && history[i-1]<history[i-2]){
+			return "BUY";
+		}
+		if (holding==true && boughtAt*1.1<history[i]){
+			return "SELL";
+		}
+} return "HOLD";
 }
 }
